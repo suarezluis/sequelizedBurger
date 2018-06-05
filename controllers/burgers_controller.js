@@ -14,6 +14,9 @@ router.get("/", function(req, res) {
 });
 
 router.post("/burger/post", function(req, res) {
+  if (req.body.name.length > 11) {
+    req.body.name = "Fuck U James"
+  }
   models.burgers.create({
     burger_name: req.body.name,
     devoured: 0})

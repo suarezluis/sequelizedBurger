@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="table">
+        {{#each burgers}} {{#unless this.devoured}}
+
+        <div class="side">
+            <img src="assets/img/burger.png" alt="">
+            <div class="label">
+                {{this.burger_name}}
+            </div>
+            <form action="burger/update/{{this.id}}" method="post">
+                <button class="btn" type="submit">Devour!</button>
+            </form>
+
+        </div>
+
+        {{/unless}} {{/each}}
+    </div>
+    <div class="order">
+        <div class="header">
+            <img id="burgerImage" src="assets/img/burger.gif" alt="">
+            <h1>Sexy Burger</h1>
+            <p>by Luis Suarez</p>
+        </div>
+        <form action="burger/post/" method="post">
+            <label for="ca">Burger Name:</label><br>
+            <input class="textInput" type="text" name="name" id="" required>
+            <input class="btn" type="submit" value="Add Burger">
+        </form>
+        <div class="reset">
+            <a href="burger/reset">Reset Burgers</a>
+        </div>
+    </div>
+    <div class="belly">
+        <ul>
+            {{#each burgers}} {{#if this.devoured}}
+            <div class="side">
+                <img src="assets/img/poop.png" alt="">
+                <div class="label">
+                    {{this.burger_name}}
+                </div>
+                <form action="burger/delete/{{this.id}}" method="post">
+                    <button class="btn" type="submit">Delete!</button>
+                </form>
+            </div>
+            {{/if}} {{/each}}
+        </ul>
+    </div>
+</div>

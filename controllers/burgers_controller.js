@@ -47,23 +47,30 @@ router.post("/burger/delete/:id", function(req, res) {
 });
 
 router.get("/burger/reset", function(req, res) {
-  var condition = "id <> ''";
-  console.log(condition);
-  burger.delete(condition, function(result) {});
-
-  burger.insert(
-    ["id", "burger_name", "devoured"],
-    ["2", "Vegetarian", 0],
-    function(result) {}
-  );
-  burger.insert(["id", "burger_name", "devoured"], ["3", "Bison", 0], function(
-    result
-  ) {});
-  burger.insert(["id", "burger_name", "devoured"], ["1", "Diablo", 0], function(
-    result
-  ) {
-    res.redirect("/");
+  models.burgers.destroy({ where: {  } }).then(function() {
+    
   });
+  models.burgers.create({
+    burger_name: "Diablo",
+    devoured: 0})
+    .then(function() {
+ 
+  });
+
+  models.burgers.create({
+    burger_name: "Vegetarian",
+    devoured: 0})
+    .then(function() {
+ 
+  });
+
+  models.burgers.create({
+    burger_name: "Bison",
+    devoured: 0})
+    .then(function() {
+ res.redirect('/');
+  });
+  
 });
 
 // Export routes for server.js to use.
